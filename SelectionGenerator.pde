@@ -155,6 +155,9 @@ class SelectionWheel
 
   void updateNumberOfRotations()
   {
+    if (texts.size()==0)
+    return; 
+    
     if (texts.get(0).rotation<5)
     {
       numberOfRotations++;
