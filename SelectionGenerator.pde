@@ -5,6 +5,7 @@ class SelectionWheel
   ArrayList<Text> texts;
   ArrayList<Line> lines;
   Ellipse frame;
+  Image arrow;
 
   ArrayList<String> removed;
   int angle;
@@ -20,7 +21,11 @@ class SelectionWheel
     lines= new ArrayList<Line>();
     names= new ArrayList<String>();
     removed= new ArrayList<String>();
-
+    arrow= new Image();
+    arrow.setImage("arrow.png");
+    arrow.x=width/2+250;
+    arrow.y=height/2-70;
+    
     generateNameList();
 
 
@@ -99,6 +104,8 @@ class SelectionWheel
 
     for (Line line : lines)
       line.draw();
+      
+      arrow.draw();
   }
 
 
@@ -109,7 +116,7 @@ class SelectionWheel
     stopRotation();
     if (rotatable)
     {
-      for (int i =0; i<2; i++)
+      for (int i =0; i<3; i++)
       {
         for (Text text : texts)
         {
@@ -123,6 +130,7 @@ class SelectionWheel
           line.rotation%=360;
         }
       }
+      
       updateNumberOfRotations();
     }
     drawWheel();
@@ -135,7 +143,7 @@ class SelectionWheel
     int random= (int) random(texts.size());
     if (numberOfRotations>2)
     {
-      if (texts.get(random).rotation==0)
+      if (texts.get(random).rotation<=5)
       {
         removed.add(texts.get(random).text.replaceAll(" ", ""));
         rotatable=false;
@@ -147,7 +155,7 @@ class SelectionWheel
 
   void updateNumberOfRotations()
   {
-    if (texts.get(0).rotation==0)
+    if (texts.get(0).rotation<5)
     {
       numberOfRotations++;
     }
@@ -160,6 +168,7 @@ class SelectionWheel
   {
     if (!rotatable)
     {
+      numberOfRotations=0;
       names.removeAll(removed);
       generateWheel();
     }

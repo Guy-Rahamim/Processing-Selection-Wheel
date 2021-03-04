@@ -2,7 +2,7 @@
 SelectionWheel wheel;
 
 void setup() {
-  size(1024, 512);
+  size(800, 500);
   wheel= new SelectionWheel();
   
 }
@@ -15,6 +15,5 @@ background(100);
 
 void mousePressed()
 {
-      //wheel.stopRotation();
       wheel.regenerateWheel();
 }
